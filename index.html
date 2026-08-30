@@ -106,7 +106,14 @@ a{color:inherit}
   margin-left:calc(var(--gutter) * -1);
   margin-right:calc(var(--gutter) * -1);
 }
-.reelfilm video{max-height:78svh}
+.reelfilm video{
+  width:100%;
+  aspect-ratio:auto;
+  height:clamp(16rem, 56svh, 38rem);
+  object-fit:cover;
+  object-position:center;
+  background:#F2F2F2;
+}
 
 /* --- name and bio ---------------------------------------------- */
 .card{
