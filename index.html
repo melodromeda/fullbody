@@ -101,13 +101,12 @@ a{color:inherit}
 }
 
 /* --- hero reel: 1920x1080 loop, first thing on the page --------- */
-.reelfilm{padding-top:calc(var(--bar) + clamp(2rem, 5vw, 3.5rem))}
-.reelfilm video{
-  width:100%;
-  aspect-ratio:16/9;
-  object-fit:cover;
-  background:#F2F2F2;
+.reelfilm{
+  padding-top:calc(var(--bar) + clamp(2rem, 5vw, 3.5rem));
+  margin-left:calc(var(--gutter) * -1);
+  margin-right:calc(var(--gutter) * -1);
 }
+.reelfilm video{max-height:78svh}
 
 /* --- name and bio ---------------------------------------------- */
 .card{
