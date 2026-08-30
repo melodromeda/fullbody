@@ -1,0 +1,396 @@
+
+
+
+Index · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<!-- ========= EDIT ME: name, tagline, social preview ========= -->
+<title>Katherine</title>
+<meta name="description" content="Real-time visuals, interactive installation, and works on paper.">
+<meta property="og:title" content="Katherine">
+<meta property="og:description" content="Real-time visuals, interactive installation, and works on paper.">
+<meta property="og:type" content="website">
+<!-- ========================================================= -->
+ 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&display=swap" rel="stylesheet">
+ 
+<style>
+/* ---------------------------------------------------------------
+   White wall. Work is hung, not cropped.
+   One family throughout: Jost, a geometric sans drawn off Renner's
+   Futura. Falls back to real Futura / Century Gothic if present.
+----------------------------------------------------------------*/
+:root{
+  --paper:#FFFFFF;
+  --ink:#111111;
+  --dim:#767676;
+  --line:#E4E4E4;
+ 
+  --gutter:clamp(1.25rem, 4vw, 3.5rem);
+  --stack:clamp(3rem, 7vw, 6rem);
+  --bar:3.25rem;
+ 
+  --geo:"Jost", Futura, "Century Gothic", "Avenir Next", sans-serif;
+}
+ 
+*{box-sizing:border-box}
+html{
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--bar) + 1.25rem);
+}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--geo);
+  font-weight:400;
+  font-size:clamp(0.95rem, 0.9rem + 0.2vw, 1.0625rem);
+  line-height:1.6;
+}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
+ 
+.wrap{padding:0 var(--gutter)}
+ 
+/* --- fixed nav ---------------------------------------------------
+   Same tracked uppercase as the section titles, so the bar reads as
+   part of the labelling system rather than as chrome bolted on top. */
+.bar{
+  position:fixed; inset:0 0 auto 0; z-index:50;
+  height:var(--bar);
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:0 var(--gutter);
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+.bar a{text-decoration:none}
+.bar .mark{
+  font-size:0.8125rem;
+  font-weight:500;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--ink);
+}
+.bar nav{display:flex; gap:clamp(0.9rem, 3vw, 1.75rem)}
+.bar nav a{
+  font-size:0.75rem;
+  font-weight:400;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--dim);
+  transition:color .2s ease;
+}
+.bar nav a:hover, .bar nav a:focus-visible{color:var(--ink)}
+@media (max-width:420px){
+  .bar nav a{letter-spacing:0.08em}
+}
+ 
+/* Small tracked uppercase. Used for section titles and every
+   caption, so labelling stays consistent across both bodies of work. */
+.label{
+  font-size:0.75rem;
+  font-weight:500;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--dim);
+  margin:0;
+}
+ 
+/* --- two images at the top, hung at a shared height ------------ */
+.hang{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:var(--gutter);
+  align-items:end;
+  padding-top:calc(var(--bar) + clamp(2rem, 5vw, 3.5rem));
+}
+.hang figure{margin:0}
+.hang a{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  text-decoration:none;
+}
+/* Natural proportions preserved. Nothing is cropped; the two images
+   simply share a ceiling, the way work shares a hanging line. */
+.hang img{
+  width:auto;
+  max-width:100%;
+  max-height:58svh;
+  object-fit:contain;
+}
+.hang figcaption{display:none}
+@media (max-width:640px){
+  .hang{grid-template-columns:1fr; gap:calc(var(--gutter) * 1.5)}
+  .hang img{max-height:44svh}
+}
+ 
+/* --- name and bio ---------------------------------------------- */
+.card{
+  padding:var(--stack) 0 calc(var(--stack) * 0.75);
+  max-width:34rem;
+}
+.card h1{
+  font-size:1.125rem;
+  font-weight:500;
+  letter-spacing:0.01em;
+  margin:0 0 0.75rem;
+}
+.card p{margin:0 0 0.85rem; max-width:48ch}
+.card .quiet{color:var(--dim)}
+.inline-links{
+  list-style:none; margin:0; padding:0;
+  display:flex; flex-wrap:wrap; gap:0.5rem 1.5rem;
+}
+.inline-links a{
+  text-decoration:none;
+  border-bottom:1px solid var(--line);
+  padding-bottom:0.1rem;
+  font-size:0.9375rem;
+}
+.inline-links a:hover, .inline-links a:focus-visible{border-bottom-color:var(--ink)}
+ 
+/* --- section framing ------------------------------------------- */
+.band{padding:0 0 var(--stack)}
+.band__head{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:0.5rem 1.5rem;
+  padding-bottom:0.9rem;
+  margin-bottom:var(--gutter);
+  border-top:1px solid var(--line);
+  padding-top:0.9rem;
+}
+.band__head h2{
+  font-size:clamp(1.0625rem, 0.9rem + 0.7vw, 1.5rem);
+  font-weight:500;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--ink);
+  line-height:1.15;
+  margin:0;
+}
+.band__head .note{
+  margin:0; color:var(--dim); font-size:0.875rem; max-width:42ch;
+}
+ 
+/* --- AV: fixed 16:9, motion on hover ---------------------------- */
+.reel{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  gap:calc(var(--gutter) * 1.25) var(--gutter);
+}
+.work__media{
+  display:block; position:relative;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  background:#F2F2F2;
+  text-decoration:none;
+}
+.work__media img, .work__media video{width:100%; height:100%; object-fit:cover}
+.work__media video{position:absolute; inset:0; opacity:0; transition:opacity .3s ease}
+.work__media:hover video, .work__media:focus-visible video{opacity:1}
+ 
+.work__meta{padding-top:0.8rem}
+.work h3{font-size:1rem; font-weight:500; margin:0 0 0.25rem}
+.work p{margin:0 0 0.45rem; color:var(--dim); max-width:44ch; font-size:0.9375rem}
+ 
+/* --- drawing: natural heights, no cropping ---------------------- */
+.sheets{columns:3 17rem; column-gap:var(--gutter)}
+.sheet{break-inside:avoid; margin:0 0 calc(var(--gutter) * 1.25)}
+.sheet img{width:100%; height:auto; background:#F2F2F2}
+.sheet figcaption{padding-top:0.7rem}
+.sheet figcaption strong{display:block; font-weight:500; font-size:1rem; color:var(--ink)}
+.sheet figcaption .label{margin-top:0.2rem}
+ 
+/* --- foot -------------------------------------------------------- */
+.foot{padding:0 0 4rem}
+.foot .inline-links{margin:0}
+.foot__place{margin-top:2rem}
+ 
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms !important; animation-duration:.01ms !important}
+  .work__media video{display:none}
+}
+</style>
+</head>
+ 
+<body id="top">
+ 
+<header class="bar">
+  <a class="mark" href="#top"><!-- EDIT ME -->Katherine</a>
+  <nav>
+    <a href="#av">Interactive / AV</a>
+    <a href="#drawing">Drawing</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+ 
+<main class="wrap">
+ 
+  <!-- ===================== TWO IMAGES ========================
+       One from each body of work. They double as the way in:
+       each links down to its section. Upload at true proportions,
+       around 1600px on the long edge.
+  ========================================================== -->
+  <div class="hang">
+    <figure>
+      <!-- The image file goes at media/hero-av.jpg. Change that path to
+           match your filename. The alt text is not shown on the page;
+           it is read aloud by screen readers and appears if the image
+           fails to load, so write a short plain description. -->
+      <a href="#av"><img src="media/hero-av.jpg" alt="Describe the image."></a>
+    </figure>
+    <figure>
+      <a href="#drawing"><img src="media/hero-drawing.jpg" alt="Describe the image."></a>
+    </figure>
+  </div>
+ 
+  <!-- ===================== NAME &amp; BIO ======================== -->
+  <section class="card">
+    <h1><!-- EDIT ME -->Katherine</h1>
+    <p>I build real-time visual systems for live music and installation, and I draw.</p>
+    <p class="quiet">Boston, MA. Available for AV design, installation, and collaboration.</p>
+  </section>
+ 
+  <!-- ===================== INTERACTIVE / AV ==================== -->
+  <section class="band" id="av">
+    <div class="band__head">
+      <h2>Interactive / AV</h2>
+      <p class="note">Real-time systems: TouchDesigner, GLSL, MediaPipe, Unity, OSC.</p>
+    </div>
+ 
+    <div class="reel">
+ 
+      <!-- ===== Copy this whole <article> per piece =====
+           media/ convention:
+             media/piece.jpg   still, required
+             media/piece.mp4   short muted loop, optional, plays on hover
+           Delete the <video> line if you only have a still.
+      -->
+      <article class="work">
+        <a class="work__media" href="#" aria-label="Snapshot of a Control Agenda">
+          <img src="media/control-agenda.jpg" alt="Describe the image.">
+          <video src="media/control-agenda.mp4" muted loop playsinline preload="none"></video>
+        </a>
+        <div class="work__meta">
+          <h3>Snapshot of a Control Agenda</h3>
+          <p>Interactive installation on surveillance and identity categorization. Facial tracking feeds a game system that sorts and files the viewer.</p>
+          <p class="label">Installation · TouchDesigner, Unity, MediaPipe, OSC</p>
+        </div>
+      </article>
+ 
+      <article class="work">
+        <a class="work__media" href="#" aria-label="Project title">
+          <img src="media/piece-02.jpg" alt="Describe the image.">
+          <video src="media/piece-02.mp4" muted loop playsinline preload="none"></video>
+        </a>
+        <div class="work__meta">
+          <h3>Project title</h3>
+          <p>One or two sentences. What it is, where it ran, what it responds to.</p>
+          <p class="label">Live visuals · TouchDesigner, GLSL</p>
+        </div>
+      </article>
+ 
+      <article class="work">
+        <a class="work__media" href="#" aria-label="Project title">
+          <img src="media/piece-03.jpg" alt="Describe the image.">
+        </a>
+        <div class="work__meta">
+          <h3>Project title</h3>
+          <p>One or two sentences.</p>
+          <p class="label">Venue, year · Tools</p>
+        </div>
+      </article>
+ 
+    </div>
+  </section>
+ 
+  <!-- ==================== DRAWING / PAINTING =================== -->
+  <section class="band" id="drawing">
+    <div class="band__head">
+      <h2>Drawing &amp; Painting</h2>
+      <p class="note">Works on paper and canvas.</p>
+    </div>
+ 
+    <div class="sheets">
+ 
+      <!-- ===== Copy this <figure> per piece. Heights vary naturally,
+           so upload at true proportions. Nothing gets cropped. ===== -->
+      <figure class="sheet">
+        <img src="media/drawing-01.jpg" alt="Describe the image.">
+        <figcaption>
+          <strong>Title</strong>
+          <p class="label">Graphite on paper · 18 × 24 in · 2025</p>
+        </figcaption>
+      </figure>
+ 
+      <figure class="sheet">
+        <img src="media/drawing-02.jpg" alt="Describe the image.">
+        <figcaption>
+          <strong>Title</strong>
+          <p class="label">Gouache on paper · 11 × 14 in · 2025</p>
+        </figcaption>
+      </figure>
+ 
+      <figure class="sheet">
+        <img src="media/drawing-03.jpg" alt="Describe the image.">
+        <figcaption>
+          <strong>Title</strong>
+          <p class="label">Oil on canvas · 24 × 30 in · 2024</p>
+        </figcaption>
+      </figure>
+ 
+      <figure class="sheet">
+        <img src="media/drawing-04.jpg" alt="Describe the image.">
+        <figcaption>
+          <strong>Title</strong>
+          <p class="label">Ink on paper · 9 × 12 in · 2024</p>
+        </figcaption>
+      </figure>
+ 
+    </div>
+  </section>
+ 
+  <footer class="foot" id="contact">
+    <div class="band__head">
+      <h2>Contact</h2>
+    </div>
+    <ul class="inline-links">
+      <!-- EDIT ME -->
+      <li><a href="mailto:you@example.com">you@example.com</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Vimeo</a></li>
+      <li><a href="#">Resume</a></li>
+    </ul>
+    <p class="label foot__place">Boston, MA</p>
+  </footer>
+ 
+</main>
+ 
+<script>
+// Hover-play the loops, and only then.
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.work__media').forEach(function (card) {
+    var v = card.querySelector('video');
+    if (!v) return;
+    var play = function () { v.play().catch(function () {}); };
+    var stop = function () { v.pause(); v.currentTime = 0; };
+    card.addEventListener('mouseenter', play);
+    card.addEventListener('focus', play);
+    card.addEventListener('mouseleave', stop);
+    card.addEventListener('blur', stop);
+  });
+})();
+</script>
+ 
+</body>
+</html>
+ 
