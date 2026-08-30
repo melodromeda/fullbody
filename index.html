@@ -200,6 +200,17 @@ a{color:inherit}
 .work__meta{padding-top:0.8rem}
 .work h3{font-size:1rem; font-weight:500; margin:0 0 0.25rem}
 .work p{margin:0 0 0.45rem; color:var(--dim); max-width:44ch; font-size:0.9375rem}
+
+.work--wide{grid-column:1 / -1}
+.work__media--lead{aspect-ratio:1321 / 566}
+.work__strip{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap:clamp(0.5rem, 1.5vw, 0.9rem);
+  margin-top:clamp(0.5rem, 1.5vw, 0.9rem);
+  align-items:start;
+}
+.work__strip img{width:100%; height:auto; background:#F2F2F2}
  
 /* --- drawing: natural heights, no cropping ---------------------- */
 .sheets{columns:3 17rem; column-gap:var(--gutter)}
@@ -273,18 +284,21 @@ a{color:inherit}
              media/piece.mp4   short muted loop, optional, plays on hover
            Delete the <video> line if you only have a still.
       -->
-      <article class="work">
-        <a class="work__media" href="#" aria-label="Snapshot of a Control Agenda">
-          <img src="media/402 ex 2.png" alt="Describe the image.">
-          <img src="media/402 ex 6.png" alt="Describe the image.">
-          <video src="media/control-agenda.mp4" muted loop playsinline preload="none"></video>
-        </a>
-        <div class="work__meta">
-          <h3>Snapshot of a Control Agenda</h3>
-          <p>Interactive installation on surveillance and identity categorization. Facial tracking feeds a game system that sorts and files the viewer.</p>
-          <p class="label">Installation · TouchDesigner, Unity, MediaPipe, OSC</p>
-        </div>
-      </article>
+<article class="work work--wide">
+  <a class="work__media work__media--lead" href="#" aria-label="Snapshot of a Control Agenda">
+    <img src="media/402 landscape.jpg" alt="Describe the image.">
+    <video src="media/control-agenda.mp4" muted loop playsinline preload="none"></video>
+  </a>
+  <div class="work__strip">
+    <img src="media/402 ex 2.png" alt="Describe the image.">
+    <img src="media/402 ex 6.png" alt="Describe the image.">
+  </div>
+  <div class="work__meta">
+    <h3>Snapshot of a Control Agenda</h3>
+    <p>Interactive installation on surveillance and identity categorization. Facial tracking feeds a game system that sorts and files the viewer.</p>
+    <p class="label">Installation · TouchDesigner, Unity, MediaPipe, OSC</p>
+  </div>
+</article>
  
       <article class="work">
         <a class="work__media" href="#" aria-label="Project title">
