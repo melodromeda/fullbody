@@ -184,6 +184,21 @@ a{color:inherit}
 
 .work__meta{padding-top:0.8rem}
 .work h3{font-size:1rem; font-weight:500; margin:0 0 0.25rem}
+.work__title{
+  display:flex; flex-wrap:wrap;
+  align-items:baseline;
+  gap:0.1rem 0.7rem;
+  margin:0 0 0.3rem;
+}
+.work__title h3{margin:0}
+.work__sub{
+  margin:0;
+  color:var(--dim);
+  font-size:1rem;
+  font-weight:400;
+  letter-spacing:0;
+  text-transform:none;
+}
 .work p{margin:0 0 0.45rem; color:var(--dim); max-width:44ch; font-size:0.9375rem}
 
 .work--wide{grid-column:1 / -1}
@@ -323,8 +338,10 @@ a{color:inherit}
           <img src="media/402 ex 1.png" alt="Describe the image.">
         </div>
         <div class="work__meta">
-          <h3>Snapshot of a Control Agenda</h3>
-          <p class="label">Undergraduate thesis · 2025</p>
+         <div class="work__title">
+           <h3>Snapshot of a Control Agenda</h3>
+           <p class="work__sub">Undergraduate thesis · 2025</p>
+          </div>
           <p>Interactive installation on surveillance and identity categorization. Facial tracking feeds a game system that sorts and files the viewer.</p>
           <p class="label">Installation · TouchDesigner, Unity, MediaPipe, OSC</p>
         </div>
