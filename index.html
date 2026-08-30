@@ -1,44 +1,39 @@
-
-
-
-Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-<!-- ========= EDIT ME: name, tagline, social preview ========= -->
+
 <title>melodromeda · fullbody</title>
 <meta name="description" content="Live vis, interactive installation, and paperworks.">
 <meta property="og:title" content="Katherine">
 <meta property="og:description" content="Live vis, interactive installation, and paperworks.">
 <meta property="og:type" content="website">
-<!-- ========================================================= -->
- 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&display=swap" rel="stylesheet">
- 
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&family=Archivo+Narrow:wght@400..700&display=swap" rel="stylesheet">
+
 <style>
 /* ---------------------------------------------------------------
    White wall. Work is hung, not cropped.
-   One family throughout: Jost, a geometric sans drawn off Renner's
-   Futura. Falls back to real Futura / Century Gothic if present.
+   Body: Jost, geometric sans off Renner's Futura.
+   Headers: Archivo Narrow, so titles stay compact beside the work.
 ----------------------------------------------------------------*/
 :root{
   --paper:#FFFFFF;
   --ink:#111111;
   --dim:#767676;
   --line:#E4E4E4;
- 
+
   --gutter:clamp(1.25rem, 4vw, 3.5rem);
   --stack:clamp(3rem, 7vw, 6rem);
   --bar:3.25rem;
- 
+
   --geo:"Jost", Futura, "Century Gothic", "Avenir Next", sans-serif;
+  --head:"Archivo Narrow", "Jost", "Arial Narrow", sans-serif;
 }
- 
+
 *{box-sizing:border-box}
 html{
   -webkit-text-size-adjust:100%;
@@ -57,12 +52,10 @@ body{
 img,video{display:block;max-width:100%}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--ink); outline-offset:3px}
- 
+
 .wrap{padding:0 var(--gutter)}
- 
-/* --- fixed nav ---------------------------------------------------
-   Same tracked uppercase as the section titles, so the bar reads as
-   part of the labelling system rather than as chrome bolted on top. */
+
+/* --- fixed nav --------------------------------------------------- */
 .bar{
   position:fixed; inset:0 0 auto 0; z-index:50;
   height:var(--bar);
@@ -73,28 +66,31 @@ a{color:inherit}
 }
 .bar a{text-decoration:none}
 .bar .mark{
-  font-size:0.8125rem;
-  font-weight:500;
-  letter-spacing:0.14em;
+  font-family:var(--head);
+  font-size:0.9375rem;
+  font-weight:600;
+  letter-spacing:0.16em;
   text-transform:uppercase;
   color:var(--ink);
 }
-.bar nav{display:flex; gap:clamp(0.9rem, 3vw, 1.75rem)}
+.bar nav{display:flex; gap:clamp(0.7rem, 2.5vw, 1.75rem)}
 .bar nav a{
-  font-size:0.75rem;
+  font-family:var(--head);
+  font-size:0.8125rem;
   font-weight:400;
   letter-spacing:0.14em;
   text-transform:uppercase;
   color:var(--dim);
+  white-space:nowrap;
   transition:color .2s ease;
 }
 .bar nav a:hover, .bar nav a:focus-visible{color:var(--ink)}
-@media (max-width:420px){
-  .bar nav a{letter-spacing:0.08em}
+@media (max-width:520px){
+  .bar nav a{letter-spacing:0.06em; font-size:0.75rem}
+  .bar .mark{letter-spacing:0.1em}
 }
- 
-/* Small tracked uppercase. Used for section titles and every
-   caption, so labelling stays consistent across both bodies of work. */
+
+/* Small tracked uppercase, used for every caption. */
 .label{
   font-size:0.75rem;
   font-weight:500;
@@ -103,7 +99,7 @@ a{color:inherit}
   color:var(--dim);
   margin:0;
 }
- 
+
 /* --- two images at the top, hung at a shared height ------------ */
 .hang{
   display:grid;
@@ -113,35 +109,34 @@ a{color:inherit}
   padding-top:calc(var(--bar) + clamp(2rem, 5vw, 3.5rem));
 }
 .hang figure{margin:0}
-.hang a{
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  text-decoration:none;
-}
-/* Natural proportions preserved. Nothing is cropped; the two images
-   simply share a ceiling, the way work shares a hanging line. */
-.hang img{
-  width:auto;
-  max-width:100%;
-  max-height:70svh;
-  object-fit:contain;
-}
+.hang a{display:flex; align-items:flex-end; justify-content:center; text-decoration:none}
+.hang img{width:auto; max-width:100%; max-height:70svh; object-fit:contain}
 .hang figcaption{display:none}
 @media (max-width:640px){
   .hang{grid-template-columns:1fr; gap:calc(var(--gutter) * 1.5)}
   .hang img{max-height:55svh}
 }
- 
+
+/* --- hero reel: 1920x1080 loop above the bio -------------------- */
+.reelfilm{margin:calc(var(--stack) * 0.85) 0 0}
+.reelfilm video{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  background:#F2F2F2;
+}
+
 /* --- name and bio ---------------------------------------------- */
 .card{
   padding:var(--stack) 0 calc(var(--stack) * 0.75);
   max-width:34rem;
 }
 .card h1{
-  font-size:1.125rem;
-  font-weight:500;
-  letter-spacing:0.01em;
+  font-family:var(--head);
+  font-size:1.375rem;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
   margin:0 0 0.75rem;
 }
 .card p{margin:0 0 0.85rem; max-width:48ch}
@@ -157,7 +152,7 @@ a{color:inherit}
   font-size:0.9375rem;
 }
 .inline-links a:hover, .inline-links a:focus-visible{border-bottom-color:var(--ink)}
- 
+
 /* --- section framing ------------------------------------------- */
 .band{padding:0 0 var(--stack)}
 .band__head{
@@ -168,9 +163,10 @@ a{color:inherit}
   padding-top:0.9rem;
 }
 .band__head h2{
-  font-size:clamp(1.0625rem, 0.9rem + 0.7vw, 1.5rem);
-  font-weight:500;
-  letter-spacing:0.1em;
+  font-family:var(--head);
+  font-size:clamp(1.25rem, 0.95rem + 1vw, 1.875rem);
+  font-weight:600;
+  letter-spacing:0.14em;
   text-transform:uppercase;
   color:var(--ink);
   line-height:1.15;
@@ -179,7 +175,7 @@ a{color:inherit}
 .band__head .note{
   margin:0; color:var(--dim); font-size:0.875rem; max-width:42ch;
 }
- 
+
 /* --- AV: fixed 16:9, motion on hover ---------------------------- */
 .reel{
   display:grid;
@@ -196,7 +192,7 @@ a{color:inherit}
 .work__media img, .work__media video{width:100%; height:100%; object-fit:cover}
 .work__media video{position:absolute; inset:0; opacity:0; transition:opacity .3s ease}
 .work__media:hover video, .work__media:focus-visible video{opacity:1}
- 
+
 .work__meta{padding-top:0.8rem}
 .work h3{font-size:1rem; font-weight:500; margin:0 0 0.25rem}
 .work p{margin:0 0 0.45rem; color:var(--dim); max-width:44ch; font-size:0.9375rem}
@@ -210,13 +206,53 @@ a{color:inherit}
   margin-top:clamp(0.5rem, 1.5vw, 0.9rem);
   align-items:start;
 }
-
 @media (max-width:520px){
   .work__strip{grid-template-columns:1fr}
 }
- 
 .work__strip img{width:100%; height:auto; background:#F2F2F2}
- 
+
+/* --- animation: crossfading boxes, two per row ------------------
+   Each .fader holds stacked .fader__item elements (img or video)
+   and cycles them. data-interval sets the dwell time in ms. */
+.films{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:calc(var(--gutter) * 1.25) var(--gutter);
+}
+.films .film--full{grid-column:1 / -1}
+@media (max-width:640px){
+  .films{grid-template-columns:1fr}
+}
+
+.fader{
+  display:block; position:relative;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  background:#F2F2F2;
+  text-decoration:none;
+}
+.fader__item{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity .8s ease;
+}
+.fader__item.is-on{opacity:1}
+.fader::after{
+  content:"";
+  position:absolute; inset:0;
+  border:1px solid transparent;
+  transition:border-color .2s ease;
+  pointer-events:none;
+}
+.fader:hover::after, .fader:focus-visible::after{border-color:var(--ink)}
+
+@media (prefers-reduced-motion:reduce){
+  .fader__item{transition:none; opacity:0}
+  .fader__item:first-child{opacity:1}
+}
+
 /* --- drawing: natural heights, no cropping ---------------------- */
 .sheets{columns:3 17rem; column-gap:var(--gutter)}
 .sheet{break-inside:avoid; margin:0 0 calc(var(--gutter) * 1.25)}
@@ -224,90 +260,92 @@ a{color:inherit}
 .sheet figcaption{padding-top:0.7rem}
 .sheet figcaption strong{display:block; font-weight:500; font-size:1rem; color:var(--ink)}
 .sheet figcaption .label{margin-top:0.2rem}
- 
+
 /* --- foot -------------------------------------------------------- */
 .foot{padding:0 0 4rem}
 .foot .inline-links{margin:0}
 .foot__place{margin-top:2rem}
- 
+
 @media (prefers-reduced-motion:reduce){
   *{transition-duration:.01ms !important; animation-duration:.01ms !important}
   .work__media video{display:none}
 }
 </style>
 </head>
- 
+
 <body id="top">
- 
+
 <header class="bar">
-  <a class="mark" href="#top"><!-- EDIT ME -->Katherine</a>
+  <a class="mark" href="#top">Katherine</a>
   <nav>
     <a href="#av">Interactive / AV</a>
+    <a href="#animation">Animation</a>
     <a href="#drawing">Drawing</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
- 
+
 <main class="wrap">
- 
-  <!-- ===================== TWO IMAGES ========================
-       One from each body of work. They double as the way in:
-       each links down to its section. Upload at true proportions,
-       around 1600px on the long edge.
-  ========================================================== -->
+
+  <!-- ===================== TWO IMAGES ======================== -->
   <div class="hang">
     <figure>
-      <!-- The image file goes at media/hero-av.jpg. Change that path to
-           match your filename. The alt text is not shown on the page;
-           it is read aloud by screen readers and appears if the image
-           fails to load, so write a short plain description. -->
       <a href="#av"><img src="media/402 landscape.jpg" alt="Describe the image."></a>
     </figure>
     <figure>
       <a href="#drawing"><img src="media/hero-drawing.jpg" alt="Describe the image."></a>
     </figure>
   </div>
- 
+
+  <!-- ===================== HERO REEL =========================
+       1920x1080 loop. Keep it short and light, ideally under
+       15 seconds and a few MB, since it autoplays on load.
+       The poster image shows while the video loads.
+       Export a second .webm alongside the .mp4 if you want the
+       smallest file; browsers pick whichever they support first.
+  ========================================================== -->
+  <div class="reelfilm">
+    <video
+      poster="media/reel-poster.jpg"
+      autoplay muted loop playsinline preload="metadata"
+      aria-label="Showreel of animation and live visual work">
+      <source src="media/reel.webm" type="video/webm">
+      <source src="media/reel.mp4" type="video/mp4">
+    </video>
+  </div>
+
   <!-- ===================== NAME &amp; BIO ======================== -->
   <section class="card">
-    <h1><!-- EDIT ME -->Katherine</h1>
-    <p>Interactive A/V, animation, painting. </p>
+    <h1>Katherine</h1>
+    <p>Interactive A/V, animation, painting.</p>
   </section>
- 
+
   <!-- ===================== INTERACTIVE / AV ==================== -->
   <section class="band" id="av">
     <div class="band__head">
       <h2>Interactive / AV</h2>
     </div>
- 
+
     <div class="reel">
- 
-      <!-- ===== Copy this whole <article> per piece =====
-           media/ convention:
-             media/piece.jpg   still, required
-             media/piece.mp4   short muted loop, optional, plays on hover
-           Delete the <video> line if you only have a still.
-      -->
-<article class="work work--wide">
-  <a class="work__media work__media--lead" href="#" aria-label="Snapshot of a Control Agenda">
-    <img src="media/402 landscape.jpg" alt="Describe the image.">
-    <video src="media/control-agenda.mp4" muted loop playsinline preload="none"></video>
-  </a>
-  <div class="work__strip">
-    <img src="media/402 ex 2.png" alt="Describe the image.">
-    <img src="media/402 ex 6.png" alt="Describe the image.">
-    <img src="media/402 ex 1.png" alt="Describe the image.">
-  </div>
-  <div class="work__meta">
-   <hgroup>
-       <h3>Snapshot of a Control Agenda</h3>
-       <p>Undergraduate Thesis, 2025</p>
-       <p>Interactive installation on surveillance and identity categorization. Facial tracking feeds a game system that sorts and files the viewer.</p>
-       <p class="label">Installation · TouchDesigner, Unity, MediaPipe, OSC</p>
-   </hgroup> 
-  </div>
-</article>
- 
+
+      <article class="work work--wide">
+        <a class="work__media work__media--lead" href="#" aria-label="Snapshot of a Control Agenda">
+          <img src="media/402 landscape.jpg" alt="Describe the image.">
+          <video src="media/control-agenda.mp4" muted loop playsinline preload="none"></video>
+        </a>
+        <div class="work__strip">
+          <img src="media/402 ex 2.png" alt="Describe the image.">
+          <img src="media/402 ex 6.png" alt="Describe the image.">
+          <img src="media/402 ex 1.png" alt="Describe the image.">
+        </div>
+        <div class="work__meta">
+          <h3>Snapshot of a Control Agenda</h3>
+          <p class="label">Undergraduate thesis · 2025</p>
+          <p>Interactive installation on surveillance and identity categorization. Facial tracking feeds a game system that sorts and files the viewer.</p>
+          <p class="label">Installation · TouchDesigner, Unity, MediaPipe, OSC</p>
+        </div>
+      </article>
+
       <article class="work">
         <a class="work__media" href="#" aria-label="Project title">
           <img src="media/piece-02.jpg" alt="Describe the image.">
@@ -319,7 +357,7 @@ a{color:inherit}
           <p class="label">Live visuals · TouchDesigner, GLSL</p>
         </div>
       </article>
- 
+
       <article class="work">
         <a class="work__media" href="#" aria-label="Project title">
           <img src="media/piece-03.jpg" alt="Describe the image.">
@@ -330,21 +368,84 @@ a{color:inherit}
           <p class="label">Venue, year · Tools</p>
         </div>
       </article>
- 
+
     </div>
   </section>
- 
+
+  <!-- ====================== ANIMATION ==========================
+       Each box cycles through three items and links to its own
+       page. Copy project-template.html once per film and rename.
+
+       IMAGES (default, light and reliable):
+         <img class="fader__item" src="..." alt="...">
+
+       VIDEOS (swap any or all items for this):
+         <video class="fader__item" src="media/clip.mp4"
+                muted loop playsinline preload="none"></video>
+         Only the fading pair ever decodes, and everything stops
+         when the box scrolls out of view.
+
+       data-interval is the dwell time per item in milliseconds.
+  ========================================================== -->
+  <section class="band" id="animation">
+    <div class="band__head">
+      <h2>Animation</h2>
+      <p class="note">Proof-of-concept films and short work.</p>
+    </div>
+
+    <div class="films">
+
+      <article class="work">
+        <a class="fader" href="film-a.html" data-interval="3000" aria-label="First film title">
+          <img class="fader__item" src="media/film-a-1.jpg" alt="Describe the image.">
+          <img class="fader__item" src="media/film-a-2.jpg" alt="">
+          <img class="fader__item" src="media/film-a-3.jpg" alt="">
+        </a>
+        <div class="work__meta">
+          <h3>First film title</h3>
+          <p>Proof of concept. One or two sentences on the premise.</p>
+          <p class="label">Proof of concept · 2025</p>
+        </div>
+      </article>
+
+      <article class="work">
+        <a class="fader" href="film-b.html" data-interval="3000" aria-label="Second film title">
+          <img class="fader__item" src="media/film-b-1.jpg" alt="Describe the image.">
+          <img class="fader__item" src="media/film-b-2.jpg" alt="">
+          <img class="fader__item" src="media/film-b-3.jpg" alt="">
+        </a>
+        <div class="work__meta">
+          <h3>Second film title</h3>
+          <p>Proof of concept. One or two sentences on the premise.</p>
+          <p class="label">Proof of concept · 2024</p>
+        </div>
+      </article>
+
+      <article class="work film--full">
+        <a class="fader" href="animation-other.html" data-interval="2600" aria-label="Other animation">
+          <img class="fader__item" src="media/other-1.jpg" alt="Describe the image.">
+          <img class="fader__item" src="media/other-2.jpg" alt="">
+          <img class="fader__item" src="media/other-3.jpg" alt="">
+        </a>
+        <div class="work__meta">
+          <h3>Other animation</h3>
+          <p>Shorts, tests, and commissioned work.</p>
+          <p class="label">Various · 2021 to now</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
   <!-- ==================== DRAWING / PAINTING =================== -->
   <section class="band" id="drawing">
     <div class="band__head">
       <h2>Drawing &amp; Painting</h2>
       <p class="note">Works on paper and canvas.</p>
     </div>
- 
+
     <div class="sheets">
- 
-      <!-- ===== Copy this <figure> per piece. Heights vary naturally,
-           so upload at true proportions. Nothing gets cropped. ===== -->
+
       <figure class="sheet">
         <img src="media/drawing-01.jpg" alt="Describe the image.">
         <figcaption>
@@ -352,7 +453,7 @@ a{color:inherit}
           <p class="label">Graphite on paper · 18 × 24 in · 2025</p>
         </figcaption>
       </figure>
- 
+
       <figure class="sheet">
         <img src="media/drawing-02.jpg" alt="Describe the image.">
         <figcaption>
@@ -360,7 +461,7 @@ a{color:inherit}
           <p class="label">Gouache on paper · 11 × 14 in · 2025</p>
         </figcaption>
       </figure>
- 
+
       <figure class="sheet">
         <img src="media/drawing-03.jpg" alt="Describe the image.">
         <figcaption>
@@ -368,7 +469,7 @@ a{color:inherit}
           <p class="label">Oil on canvas · 24 × 30 in · 2024</p>
         </figcaption>
       </figure>
- 
+
       <figure class="sheet">
         <img src="media/drawing-04.jpg" alt="Describe the image.">
         <figcaption>
@@ -376,16 +477,15 @@ a{color:inherit}
           <p class="label">Ink on paper · 9 × 12 in · 2024</p>
         </figcaption>
       </figure>
- 
+
     </div>
   </section>
- 
+
   <footer class="foot" id="contact">
     <div class="band__head">
       <h2>Contact</h2>
     </div>
     <ul class="inline-links">
-      <!-- EDIT ME -->
       <li><a href="mailto:you@example.com">you@example.com</a></li>
       <li><a href="#">Instagram</a></li>
       <li><a href="#">Vimeo</a></li>
@@ -393,11 +493,11 @@ a{color:inherit}
     </ul>
     <p class="label foot__place">Boston, MA</p>
   </footer>
- 
+
 </main>
- 
+
 <script>
-// Hover-play the loops, and only then.
+// Hover-play the AV loops, and only then.
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   document.querySelectorAll('.work__media').forEach(function (card) {
@@ -411,8 +511,69 @@ a{color:inherit}
     card.addEventListener('blur', stop);
   });
 })();
+
+// Crossfading boxes. Works with <img> or <video> items, or a mix.
+// Only the outgoing and incoming videos ever decode at once, and
+// a box goes idle whenever it scrolls off screen.
+(function () {
+  var FADE = 800;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.fader').forEach(function (box) {
+    var items = Array.prototype.slice.call(box.querySelectorAll('.fader__item'));
+    if (!items.length) return;
+
+    var i = 0;
+    var timer = null;
+    var wait = parseInt(box.getAttribute('data-interval'), 10) || 3000;
+
+    function show(el) {
+      el.classList.add('is-on');
+      if (el.tagName === 'VIDEO') {
+        try { el.currentTime = 0; } catch (e) {}
+        el.play().catch(function () {});
+      }
+    }
+    function hide(el) {
+      el.classList.remove('is-on');
+      if (el.tagName === 'VIDEO') {
+        setTimeout(function () {
+          if (!el.classList.contains('is-on')) el.pause();
+        }, FADE + 100);
+      }
+    }
+
+    show(items[0]);
+    if (reduce || items.length < 2) return;
+
+    function step() {
+      var prev = items[i];
+      i = (i + 1) % items.length;
+      show(items[i]);
+      hide(prev);
+    }
+    function start() { if (!timer) timer = setInterval(step, wait); }
+    function stop() {
+      clearInterval(timer);
+      timer = null;
+      items.forEach(function (el) {
+        if (el.tagName === 'VIDEO' && !el.classList.contains('is-on')) el.pause();
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { e.isIntersecting ? start() : stop(); });
+      }, { threshold: 0.25 }).observe(box);
+    } else {
+      start();
+    }
+
+    box.addEventListener('mouseenter', stop);
+    box.addEventListener('mouseleave', start);
+  });
+})();
 </script>
- 
+
 </body>
 </html>
- 
