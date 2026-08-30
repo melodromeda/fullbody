@@ -205,11 +205,16 @@ a{color:inherit}
 .work__media--lead{aspect-ratio:1321 / 566}
 .work__strip{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  grid-template-columns:repeat(2, 1fr);
   gap:clamp(0.5rem, 1.5vw, 0.9rem);
   margin-top:clamp(0.5rem, 1.5vw, 0.9rem);
   align-items:start;
 }
+
+@media (max-width:520px){
+  .work__strip{grid-template-columns:1fr}
+}
+ 
 .work__strip img{width:100%; height:auto; background:#F2F2F2}
  
 /* --- drawing: natural heights, no cropping ---------------------- */
