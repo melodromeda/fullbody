@@ -74,12 +74,14 @@ a{color:inherit}
   color:var(--ink);
   flex:none;
 }
+/* Five items, so the nav scrolls sideways if it ever overflows on a
+   narrow phone. No mask-image here: it applied at every width and
+   faded out the last item (Contact) on desktop. */
 .bar nav{
   display:flex; gap:clamp(0.7rem, 2.5vw, 1.75rem);
-  overflow-x:auto;              /* five items now; scroll rather than wrap */
+  overflow-x:auto;
   scrollbar-width:none;
   -ms-overflow-style:none;
-  mask-image:linear-gradient(to right, #000 85%, transparent);
 }
 .bar nav::-webkit-scrollbar{display:none}
 .bar nav a{
@@ -147,7 +149,7 @@ a{color:inherit}
 .about{padding:var(--stack) 0 calc(var(--stack) * 0.85)}
 .about__grid{
   display:grid;
-  grid-template-columns:minmax(0, 36rem) minmax(0, 16rem);
+  grid-template-columns:minmax(0, 36rem) minmax(0, 19rem);
   gap:var(--gutter);
   align-items:start;
 }
@@ -167,12 +169,16 @@ a{color:inherit}
 .about p{margin:0 0 0.9rem; max-width:56ch}
 .about p:last-child{margin-bottom:0}
 .about__side{display:grid; gap:1.5rem; justify-items:start}
+/* Grows with the viewport, capped so it stays inside its column. */
 .about__portrait{
-  width:clamp(8rem, 26vw, 11rem);
+  width:clamp(8rem, 20vw, 15rem);
   aspect-ratio:1;
   border-radius:50%;
   object-fit:cover;
   background:#F2F2F2;
+}
+@media (max-width:820px){
+  .about__portrait{width:clamp(8rem, 30vw, 11rem)}
 }
 .stacked{
   list-style:none; margin:0.6rem 0 0; padding:0;
@@ -258,6 +264,8 @@ a{color:inherit}
   align-items:start;
 }
 .work__strip--three{grid-template-columns:repeat(3, 1fr)}
+/* A strip with no lead image above it sits flush with the section top. */
+.work > .work__strip:first-child{margin-top:0}
 @media (max-width:520px){
   .work__strip, .work__strip--three{grid-template-columns:1fr}
 }
@@ -389,9 +397,9 @@ a{color:inherit}
         <h1>Katherine Cook</h1>
         <p class="about__line">Interactive AV, animation &amp; VFX, drawing &amp; painting.</p>
 
-        <p>Hi! I'm an interactive installation artist and animator based in Somerville, MA. 
-           I make installations about social behavior and cultural manipulation. 
-           I also design audio-reactive visuals for music performers and DJs. 
+        <p>Hi! I'm an interactive installation artist and animator based in Somerville, MA.
+           I make installations about social behavior and cultural manipulation.
+           I also design audio-reactive visuals for music performers and DJs.
            I'm looking for work on the administrative side of producing and installing public art.</p>
       </div>
 
@@ -502,15 +510,12 @@ a{color:inherit}
         <div class="trio">
           <figure>
             <img src="media/wrtn ss lolll_10.png" alt="Posterised blue and yellow figure from the Written promo">
-            <figcaption>&nbsp;</figcaption>
           </figure>
           <figure>
             <img src="media/wrtn dxarcade ss0.png" alt="Arcade-style title card reading Written DX Arcade with show times">
-            <figcaption>&nbsp;</figcaption>
           </figure>
           <figure>
             <img src="media/wrtn ss lolll0.png" alt="High-contrast black and white figure framed in blue">
-            <figcaption>&nbsp;</figcaption>
           </figure>
         </div>
       </article>
@@ -527,10 +532,8 @@ a{color:inherit}
     <div class="reel">
 
       <article class="work work--wide">
-        <a class="work__media work__media--lead" href="745 pitch.html" aria-label="745 sticky, full project">
-        </a>
         <div class="work__strip work__strip--three">
-          <img src="media/745/745 beat board 1.jpg" alt="">
+          <img src="media/745/745 beat board 1.jpg" alt="Beat board panel from the 745 sticky sequence">
           <img src="media/745/hero.jpg" alt="Character design sheet for the data miner with head studies">
           <img src="media/745/745 illustration 3.png" alt="Concept art for the outside environment">
         </div>
@@ -551,11 +554,8 @@ a{color:inherit}
       </article>
 
       <article class="work work--wide">
-        <a class="work__media work__media--lead" href="#" aria-label="VFX sequences on Nightrunners">
-          
-        </a>
         <div class="work__strip">
-           <img src="media/final vfx_10.png" alt="Two figures rendered as glowing green particles in darkness">
+          <img src="media/final vfx_10.png" alt="Two figures rendered as glowing green particles in darkness">
           <img src="media/final vfx_20.png" alt="Close portrait dissolving into particle streaks">
         </div>
         <div class="work__meta">
