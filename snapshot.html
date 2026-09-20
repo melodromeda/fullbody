@@ -4,22 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>melodromeda · fullbody</title>
-<meta name="description" content="Live vis, interactive installation, and paperworks.">
-<meta property="og:title" content="Katherine Cook">
-<meta property="og:description" content="Live vis, interactive installation, and paperworks.">
-<meta property="og:type" content="website">
+<title>Snapshot of a Control Agenda · melo.fullbody</title>
+<meta name="description" content="Interactive installation on surveillance and identity categorization. Undergraduate thesis, 2025.">
+<meta property="og:title" content="Snapshot of a Control Agenda">
+<meta property="og:description" content="Interactive installation on surveillance and identity categorization.">
+<meta property="og:type" content="article">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&family=Archivo+Narrow:wght@400..700&display=swap" rel="stylesheet">
 
 <style>
-/* ---------------------------------------------------------------
-   White wall. Work is hung, not cropped.
-   Body: Jost, geometric sans off Renner's Futura.
-   Headers: Archivo Narrow, so titles stay compact beside the work.
-----------------------------------------------------------------*/
+/* Same tokens as index.html. If you get tired of keeping two copies in
+   sync, lift everything between these braces into media/site.css and
+   link it from both files. */
 :root{
   --paper:#FFFFFF;
   --ink:#111111;
@@ -45,7 +43,6 @@ body{
   background:var(--paper);
   color:var(--ink);
   font-family:var(--geo);
-  font-weight:400;
   font-size:clamp(0.95rem, 0.9rem + 0.2vw, 1.0625rem);
   line-height:1.6;
 }
@@ -53,9 +50,8 @@ img,video{display:block;max-width:100%}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--ink); outline-offset:3px}
 
-.wrap{padding:0 var(--gutter)}
+.wrap{padding:0 var(--gutter); max-width:76rem; margin:0 auto}
 
-/* --- fixed nav --------------------------------------------------- */
 .bar{
   position:fixed; inset:0 0 auto 0; z-index:50;
   height:var(--bar);
@@ -67,31 +63,15 @@ a{color:inherit}
 .bar a{text-decoration:none}
 .bar .mark{
   font-family:var(--head);
-  font-size:0.9375rem;
-  font-weight:600;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  color:var(--ink);
-  flex:none;
+  font-size:0.9375rem; font-weight:600;
+  letter-spacing:0.16em; text-transform:uppercase;
 }
-/* Five items, so the nav scrolls sideways on narrow screens instead of
-   wrapping and breaking the bar height. No edge fade here: a mask
-   applies at every width, which dimmed the last item on desktop. */
-.bar nav{
-  display:flex; gap:clamp(0.7rem, 2.5vw, 1.75rem);
-  overflow-x:auto;
-  scrollbar-width:none;
-  -ms-overflow-style:none;
-}
-.bar nav::-webkit-scrollbar{display:none}
+.bar nav{display:flex; gap:clamp(0.7rem, 2.5vw, 1.75rem)}
 .bar nav a{
   font-family:var(--head);
   font-size:0.8125rem;
-  font-weight:400;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--dim);
-  white-space:nowrap;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--dim); white-space:nowrap;
   transition:color .2s ease;
 }
 .bar nav a:hover, .bar nav a:focus-visible{color:var(--ink)}
@@ -100,263 +80,82 @@ a{color:inherit}
   .bar .mark{letter-spacing:0.1em}
 }
 
-/* Small tracked uppercase, used for every caption. */
 .label{
-  font-size:0.75rem;
-  font-weight:500;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--dim);
-  margin:0;
+  font-size:0.75rem; font-weight:500;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--dim); margin:0;
 }
 
-/* --- hero reel: 1920x1080 loop, first thing on the page --------- */
-.reelfilm{
-  position:relative;
-  padding-top:calc(var(--bar) + clamp(2rem, 5vw, 3.5rem));
-  margin-left:calc(var(--gutter) * -1);
-  margin-right:calc(var(--gutter) * -1);
+/* --- title block ------------------------------------------------ */
+.masthead{
+  padding-top:calc(var(--bar) + clamp(2.5rem, 6vw, 4.5rem));
+  padding-bottom:var(--gutter);
 }
-.reelfilm video{
-  width:100%;
-  aspect-ratio:auto;
-  height:clamp(16rem, 56svh, 38rem);
-  object-fit:cover;
-  object-position:center;
-  background:#F2F2F2;
-}
-.reelfilm::after{
-  content:"";
-  position:absolute;
-  left:0; right:0; bottom:0;
-  height:clamp(3rem, 12%, 7rem);
-  background:linear-gradient(to bottom, transparent, var(--paper));
-  pointer-events:none;
-  opacity:0;
-  transition:opacity .4s ease;
-}
-.reelfilm.is-going::after{opacity:1}
-
-@media (max-width:640px){
-  .reelfilm video{
-    aspect-ratio:16/9;
-    height:auto;
-    object-fit:contain;
-  }
-}
-
-/* --- about: name, statement, portrait, contact ------------------ */
-.about{padding:var(--stack) 0 calc(var(--stack) * 0.85)}
-.about__grid{
-  display:grid;
-  grid-template-columns:minmax(0, 36rem) minmax(0, 19rem);
-  gap:var(--gutter);
-  align-items:start;
-}
-@media (max-width:820px){
-  .about__grid{grid-template-columns:1fr; gap:calc(var(--gutter) * 1.1)}
-}
-.about h1{
+.masthead h1{
   font-family:var(--head);
-  font-size:clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem);
+  font-size:clamp(1.75rem, 1.1rem + 2.4vw, 3rem);
   font-weight:600;
-  letter-spacing:0.14em;
+  letter-spacing:0.1em;
   text-transform:uppercase;
-  line-height:1.1;
+  line-height:1.08;
   margin:0 0 0.5rem;
 }
-.about__line{color:var(--dim); margin:0 0 1.6rem}
-.about p{margin:0 0 0.9rem; max-width:56ch}
-.about p:last-child{margin-bottom:0}
-.about__side{display:grid; gap:1.5rem; justify-items:start}
-/* Grows with the viewport, capped so it stays inside its column. */
-.about__portrait{
-  width:clamp(8rem, 20vw, 15rem);
-  aspect-ratio:1;
-  border-radius:50%;
-  object-fit:cover;
-  background:#F2F2F2;
-}
-@media (max-width:820px){
-  .about__portrait{width:clamp(8rem, 30vw, 11rem)}
-}
-.stacked{
-  list-style:none; margin:0.6rem 0 0; padding:0;
-  display:grid; gap:0.4rem;
-  font-size:0.9375rem;
-}
-.stacked a{
-  text-decoration:none;
-  border-bottom:1px solid var(--line);
-  padding-bottom:0.1rem;
-}
-.stacked a:hover, .stacked a:focus-visible{border-bottom-color:var(--ink)}
+.masthead .sub{margin:0; color:var(--dim)}
+.masthead .tools{margin:0.9rem 0 0; color:var(--dim); font-style:italic}
 
-/* --- section framing ------------------------------------------- */
-.band{padding:0 0 var(--stack)}
-.band__head{
-  display:flex; flex-wrap:wrap; align-items:baseline; gap:0.5rem 1.5rem;
-  padding-bottom:0.9rem;
-  margin-bottom:var(--gutter);
-  border-top:1px solid var(--line);
-  padding-top:0.9rem;
+.hero img{width:100%; height:auto; background:#F2F2F2}
+.hero figcaption{padding-top:0.6rem; color:var(--dim); font-size:0.875rem}
+
+/* --- prose ------------------------------------------------------ */
+.prose{
+  max-width:38rem;
+  padding:var(--stack) 0 0;
 }
-.band__head h2{
+.prose h2{
   font-family:var(--head);
-  font-size:clamp(1.25rem, 0.95rem + 1vw, 1.875rem);
-  font-weight:600;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--ink);
-  line-height:1.15;
-  margin:0;
+  font-size:1.125rem; font-weight:600;
+  letter-spacing:0.14em; text-transform:uppercase;
+  margin:0 0 1.1rem;
+  padding-top:0.9rem;
+  border-top:1px solid var(--line);
 }
-.band__head .note{
-  margin:0; color:var(--dim); font-size:0.875rem; max-width:42ch;
-}
+.prose p{margin:0 0 1rem; max-width:62ch}
+.prose p:last-child{margin-bottom:0}
+.prose em{font-style:italic}
 
-/* --- work grid --------------------------------------------------- */
-.reel{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
-  gap:calc(var(--gutter) * 1.5) var(--gutter);
-}
-.work__media{
-  display:block; position:relative;
-  aspect-ratio:16/9;
-  overflow:hidden;
-  background:#F2F2F2;
-  text-decoration:none;
-}
-.work__media img, .work__media video{width:100%; height:100%; object-fit:cover}
-.work__media video{position:absolute; inset:0; opacity:0; transition:opacity .3s ease}
-.work__media:hover video, .work__media:focus-visible video{opacity:1}
-
-.work__meta{padding-top:0.8rem}
-.work h3{font-size:1rem; font-weight:500; margin:0 0 0.25rem}
-.work__title{
-  display:flex; flex-wrap:wrap;
-  align-items:baseline;
-  gap:0.1rem 0.7rem;
-  margin:0 0 0.3rem;
-}
-.work__title h3{margin:0}
-.work__sub{
-  margin:0;
-  color:var(--dim);
-  font-size:1rem;
-  font-weight:400;
-  letter-spacing:0;
-  text-transform:none;
-}
-.work p{margin:0 0 0.45rem; color:var(--dim); max-width:48ch; font-size:0.9375rem}
-.work .tools{font-style:italic}
-
-/* Wide cards carry a lead still plus a strip of supporting stills. */
-.work--wide{grid-column:1 / -1}
-.work--wide p{max-width:60ch}
-.work__media--lead{aspect-ratio:1321 / 566}
-.work__strip{
+/* Two-up stills between passages of text. */
+.pair{
   display:grid;
   grid-template-columns:repeat(2, 1fr);
-  gap:clamp(0.5rem, 1.5vw, 0.9rem);
-  margin-top:clamp(0.5rem, 1.5vw, 0.9rem);
-  align-items:start;
+  gap:var(--gutter);
+  padding-top:var(--stack);
 }
-.work__strip--three{grid-template-columns:repeat(3, 1fr)}
-/* A strip with no lead image above it sits flush with the section top. */
-.work > .work__strip:first-child{margin-top:0}
-@media (max-width:520px){
-  .work__strip, .work__strip--three{grid-template-columns:1fr}
-}
-.work__strip img{width:100%; height:auto; background:#F2F2F2}
+@media (max-width:640px){.pair{grid-template-columns:1fr}}
+.pair figure{margin:0}
+.pair img{width:100%; height:auto; background:#F2F2F2}
+.pair figcaption{padding-top:0.55rem; color:var(--dim); font-size:0.875rem}
 
-/* Link into a project's own page. */
-.more{
-  display:inline-block;
-  margin-top:0.3rem;
-  font-size:0.875rem;
-  text-decoration:none;
-  border-bottom:1px solid var(--ink);
-  padding-bottom:0.08rem;
-}
-.more:hover, .more:focus-visible{color:var(--dim); border-bottom-color:var(--dim)}
+.stack-shot{padding-top:var(--stack)}
+.stack-shot img{width:100%; height:auto; background:#F2F2F2}
+.stack-shot figcaption{padding-top:0.55rem; color:var(--dim); font-size:0.875rem}
 
-/* --- three across, each still credited -------------------------- */
-.trio{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:calc(var(--gutter) * 0.8);
-  margin-top:1.25rem;
+/* --- foot ------------------------------------------------------- */
+.foot{
+  margin-top:var(--stack);
+  padding:1rem 0 4rem;
+  border-top:1px solid var(--line);
+  display:flex; flex-wrap:wrap; gap:0.5rem 2rem; align-items:baseline;
 }
-@media (max-width:640px){.trio{grid-template-columns:1fr}}
-.trio figure{margin:0}
-.trio img{
-  width:100%;
-  aspect-ratio:16/9;
-  object-fit:cover;
-  background:#F2F2F2;
-}
-.trio figcaption{padding-top:0.55rem; color:var(--dim); font-size:0.875rem}
-
-/* --- crossfading boxes (kept for any multi-still card) ----------
-   Each .fader holds stacked .fader__item elements (img or video)
-   and cycles them. data-interval sets the dwell time in ms. */
-.fader{
-  display:block; position:relative;
-  aspect-ratio:16/9;
-  overflow:hidden;
-  background:#F2F2F2;
-  text-decoration:none;
-}
-.fader__item{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:opacity .8s ease;
-}
-.fader__item.is-on{opacity:1}
-.fader::after{
-  content:"";
-  position:absolute; inset:0;
-  border:1px solid transparent;
-  transition:border-color .2s ease;
-  pointer-events:none;
-}
-.fader:hover::after, .fader:focus-visible::after{border-color:var(--ink)}
-
-@media (prefers-reduced-motion:reduce){
-  .fader__item{transition:none; opacity:0}
-  .fader__item:first-child{opacity:1}
-}
-
-/* --- drawing: natural heights, no cropping ---------------------- */
-.sheets{columns:3 17rem; column-gap:var(--gutter)}
-.sheet{break-inside:avoid; margin:0 0 calc(var(--gutter) * 1.25)}
-.sheet img{width:100%; height:auto; background:#F2F2F2}
-.sheet figcaption{padding-top:0.7rem}
-.sheet figcaption strong{display:block; font-weight:500; font-size:1rem; color:var(--ink); font-style:italic}
-.sheet figcaption .label{margin-top:0.2rem}
-
-/* --- foot -------------------------------------------------------- */
-.foot{padding:0 0 4rem}
-.inline-links{
-  list-style:none; margin:0; padding:0;
-  display:flex; flex-wrap:wrap; gap:0.5rem 1.5rem;
-}
-.inline-links a{
+.foot a{
   text-decoration:none;
   border-bottom:1px solid var(--line);
   padding-bottom:0.1rem;
   font-size:0.9375rem;
 }
-.inline-links a:hover, .inline-links a:focus-visible{border-bottom-color:var(--ink)}
-.foot__place{margin-top:2rem}
+.foot a:hover, .foot a:focus-visible{border-bottom-color:var(--ink)}
 
 @media (prefers-reduced-motion:reduce){
   *{transition-duration:.01ms !important; animation-duration:.01ms !important}
-  .work__media video{display:none}
 }
 </style>
 </head>
@@ -364,378 +163,103 @@ a{color:inherit}
 <body id="top">
 
 <header class="bar">
-  <a class="mark" href="#top">melo.fullbody</a>
+  <a class="mark" href="index.html">melo.fullbody</a>
   <nav>
-    <a href="#about">About</a>
-    <a href="#av">Interactive / AV</a>
-    <a href="#animation">Animation / VFX</a>
-    <a href="#drawing">Drawing</a>
-    <a href="#contact">Contact</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#av">Interactive / AV</a>
+    <a href="index.html#animation">Animation / VFX</a>
+    <a href="index.html#drawing">Drawing</a>
+    <a href="index.html#contact">Contact</a>
   </nav>
 </header>
 
 <main class="wrap">
 
-  <!-- ===================== HERO REEL =========================
-       1920x1080 loop. Keep it short and light, ideally under
-       15 seconds and a few MB, since it autoplays on load.
-  ========================================================== -->
-  <div class="reelfilm">
-    <video
-      poster="media/reel-poster.jpg"
-      autoplay muted loop playsinline preload="metadata"
-      aria-label="Showreel of animation and live visual work">
-      <source src="media/reel.webm" type="video/webm">
-      <source src="media/portfolio vid comp_3.mp4" type="video/mp4">
-    </video>
+  <div class="masthead">
+    <h1>Snapshot of a Control Agenda</h1>
+    <p class="sub">Undergraduate thesis, 2025</p>
+    <p class="tools">TouchDesigner, Unity, MediaPipe, OSC</p>
   </div>
 
-  <!-- ===================== ABOUT =============================== -->
-  <section class="about" id="about">
-    <div class="about__grid">
-      <div>
-        <h1>Katherine Cook</h1>
-        <p class="about__line">Interactive AV, animation &amp; VFX, drawing &amp; painting.</p>
+  <figure class="hero">
+    <img src="media/402 Documentation 110.png" alt="A player's face tracked and masked over the projected gallery room, with the question Is your room clean and Yes or No buttons">
+    <figcaption>Installed view, 2025.</figcaption>
+  </figure>
 
-        <p>Hi! I'm an interactive installation artist and animator based in Somerville, MA. I make
-        installations about social behavior and cultural manipulation. I also design audio-reactive
-        visuals for music performers and DJs. My background is in character animation, and I enjoy
-        exploring the impact a fixed artwork can have on an audience. These days, I'd like to create
-        spaces the audience can be a part of.</p>
+  <section class="prose">
+    <p>You are aware of your behaviors, preferences, and all the characteristics that make up the
+    being you call "yourself". None of these traits are static, nor are they immune to
+    interpretation by someone else. What do you become when your persona is run through varying
+    lenses of power?</p>
 
-        <p>Interactive media deeply excites me because it provides a direct interface for any person
-        to explore their intuitions, learned behaviors and values, and perceptions of each other. I
-        want to design and develop public art that brings about that sort of vulnerability through
-        play and discovery. I'm looking for work on the administrative side of producing and
-        installing public art.</p>
-      </div>
+    <p><em>Snapshot of a Control Agenda</em> is a brief game that places the player under the
+    judgement of several careful observers as a means of exposing the irrational performance of
+    gender, and gender's subjugation by powers that seek to exploit it.</p>
 
-      <aside class="about__side">
-        <img class="about__portrait" src="media/DSC_4006.jpg" alt="Katherine Cook">
-        <div>
-          <p class="label">Contact</p>
-          <ul class="stacked">
-            <li><a href="mailto:katherinecook2002@gmail.com">katherinecook2002@gmail.com</a></li>
-            <li><a href="tel:+19788447253">(978) 844-7253</a></li>
-            <li><a href="media/katherine-cook-portfolio.pdf">Portfolio PDF</a></li>
-          </ul>
-        </div>
-      </aside>
-    </div>
+    <p>Let the unassuming pieces of your character be scrutinized by the Administrator,
+    reconstructed by the Garden Patch, and thrown away by a stranger. The schemes of today's most
+    influential authorities are too grand to see all at once; <em>Snapshot</em> offers a glimpse
+    into the pathology behind their actions unto us.</p>
   </section>
 
-  <!-- ===================== INTERACTIVE / AV ==================== -->
-  <section class="band" id="av">
-    <div class="band__head">
-      <h2>Interactive &amp; AV</h2>
-    </div>
+  <div class="pair">
+    <figure>
+      <img src="media/402 ex 1.png" alt="A visitor sitting at the plinth in front of the installation screen">
+      <figcaption>Visitors play sitting at the webcam plinth.</figcaption>
+    </figure>
+    <figure>
+      <img src="media/402 eli.png" alt="A visitor at the keyboard with their masked face on the screen behind">
+      <figcaption>The mask rebuilds itself as the player answers.</figcaption>
+    </figure>
+  </div>
 
-    <div class="reel">
+  <section class="prose">
+    <h2>Technical process</h2>
 
-      <!-- Snapshot: lead card, links out to its own case study page. -->
-      <article class="work work--wide">
-        <a class="work__media work__media--lead" href="snapshot.html" aria-label="Snapshot of a Control Agenda, full project">
-          <img src="media/402 landscape.jpg" alt="Gallery view of Snapshot of a Control Agenda, a tracked face masked over a projected room">
-          <video src="media/control-agenda.mp4" muted loop playsinline preload="none"></video>
-        </a>
-        <div class="work__strip work__strip--three">
-          <img src="media/402 ex 2.png" alt="The Administrator screen asking the player a preferential question">
-          <img src="media/402 ex 6.png" alt="Mesh mask rebuilt from the player's answers">
-          <img src="media/402 ex 1.png" alt="Screening result displayed over the player's tracked face">
-        </div>
-        <div class="work__meta">
-          <div class="work__title">
-            <h3>Snapshot of a Control Agenda</h3>
-            <p class="work__sub">Undergraduate thesis, 2025</p>
-          </div>
-          <p>A brief game that places the player under the judgement of several careful observers,
-          exposing the irrational performance of gender and its subjugation by powers that seek to
-          exploit it. Facial tracking feeds a game system that sorts and files the viewer.</p>
-          <p class="tools">TouchDesigner, Unity, MediaPipe, OSC</p>
-          <a class="more" href="snapshot.html">Read the full project</a>
-        </div>
-      </article>
+    <p><em>Snapshot</em> runs between TouchDesigner as the tracking input and mask-maker, and Unity
+    as the game engine and event driver. A webcam picks up the player's face using TouchDesigner's
+    MediaPipe plugin.</p>
 
-      <!-- Maker's Marks -->
-      <article class="work work--wide">
-        <a class="work__media work__media--lead" href="#" aria-label="Maker's Marks">
-          <img src="media/Screenshot 2025-12-15 131132.png" alt="Instanced geometry landscape generated from room sound in Maker's Marks">
-        </a>
-        <div class="work__strip work__strip--three">
-          <img src="media/320 docs 3.jpg" alt="Finished painting of layered colour bursts generated by voices">
-          <img src="media/402 Documentation0.png" alt="Visitor speaking into the microphone at the Maker's Marks plinth">
-          <img src="media/390 docs 2.jpg" alt="Maker's Marks running on a wall-mounted screen in the gallery">
-        </div>
-        <div class="work__meta">
-          <div class="work__title">
-            <h3>Maker's Marks</h3>
-            <p class="work__sub">Undergraduate project, 2025</p>
-          </div>
-          <p>An interactive installation that paints a picture from its sound environment. Using
-          geometry instancing and audio-reactive feedback in TouchDesigner, participants create a
-          unique painting based on the frequencies of their voices and the surrounding area.</p>
-          <p class="tools">TouchDesigner</p>
-        </div>
-      </article>
+    <p>The player self-identifies as male, female, or "other", and is internally assigned a value of
+    0 (male), 1 (female), or 0.5 (other). The player then answers simple preferential questions
+    devised from traits traditionally associated with binary gender roles. Each option is assigned
+    "0" for "masculine", or "1" for "feminine". If the average of the player's choices does not
+    closely match the number assigned to them at the beginning, they do not pass the screening.</p>
 
-      <!-- Decibel: three artists, each still credited -->
-      <article class="work work--wide">
-        <div class="work__meta" style="padding-top:0">
-          <div class="work__title">
-            <h3>Audio-reactive Performance Visuals</h3>
-            <p class="work__sub"><em>Decibel</em> music show, 2026</p>
-          </div>
-          <p>Paid audio-reactive visuals for six music artists and DJs for a show in South Boston. I
-          operated the visuals with a microphone splitting the space's sound into bands, using them
-          to manipulate 2D and 3D textures.</p>
-        </div>
-        <div class="trio">
-          <figure>
-            <img src="media/slozing0.png" alt="Green and blue layered type reading SLOW ZING over a live camera feed">
-            <figcaption>Artist: Industrial band SLOW ZING.</figcaption>
-          </figure>
-          <figure>
-            <img src="media/hg3000.png" alt="Pink and violet radial burst behind blackletter type reading Halogen Girls">
-            <figcaption>Artist: DJ duo Halogen Girls.</figcaption>
-          </figure>
-          <figure>
-            <img src="media/betsie0.png" alt="Glowing white sphere over a wireframe grid">
-            <figcaption>Artist: DJ Betsy.</figcaption>
-          </figure>
-        </div>
-      </article>
-
-      <!-- Written Wrennaissance -->
-      <article class="work work--wide">
-        <div class="work__meta" style="padding-top:0">
-          <div class="work__title">
-            <h3>Advertising Promo for Fashion Performances</h3>
-            <p class="work__sub"><em>Written Wrennaissance</em>, 2026</p>
-          </div>
-          <p>Paid advert videos for the Written art &amp; fashion collective.</p>
-        </div>
-        <div class="trio">
-          <figure>
-            <img src="media/wrtn ss lolll_10.png" alt="Posterised blue and yellow figure from the Written promo">
-          </figure>
-          <figure>
-            <img src="media/wrtn dxarcade ss0.png" alt="Arcade-style title card reading Written DX Arcade with show times">
-          </figure>
-          <figure>
-            <img src="media/wrtn ss lolll0.png" alt="High-contrast black and white figure framed in blue">
-          </figure>
-        </div>
-      </article>
-
-    </div>
+    <p>Each response to a question creates a new feature on the base mesh mask, forming an absurd
+    representation of your habits and values through the most absolute lens of the "gender
+    binary".</p>
   </section>
 
-  <!-- ====================== ANIMATION & VFX ==================== -->
-  <section class="band" id="animation">
-    <div class="band__head">
-      <h2>Animation &amp; VFX</h2>
-    </div>
+  <figure class="stack-shot">
+    <img src="media/402 Documentation 10.png" alt="Loading screen reading No assignment detected, loading Administrator, over the player's tracked face">
+    <figcaption>The Administrator loads before the player may proceed.</figcaption>
+  </figure>
 
-    <div class="reel">
+  <section class="prose">
+    <p>Narratively, the screening represents a compromise between two entities: the accelerationist
+    tech lobby and the present U.S. Administration. The program, Garden Patch, is a fictional
+    tycoon-style simulation of the theoretical government system called the Network State. It
+    invites the player to sign up for its Beta release, but it is the Administrator, a mandated
+    addition to the program, that demands a gendered assignment before the player may proceed.</p>
 
-      <article class="work work--wide">
-        <div class="work__strip work__strip--three">
-          <img src="media/745/745 beat board 1.jpg" alt=""> 
-          <img src="media/745/hero.jpg" alt="Character design sheet for the data miner with head studies"> 
-          <img src="media/745/745 illustration 3.png" alt="Concept art for the outside environment">
-        </div>
-        <div class="work__meta">
-          <div class="work__title">
-            <h3>745 sticky</h3>
-            <p class="work__sub">Proof of concept, 2023 to 2024</p>
-          </div>
-          <p>A plucky data miner stumbles across an off-grid facility, abandoned shortly after a
-          merger between a medical tech firm and a military contractor. Detecting high levels of
-          trade-able information, they venture deeper into its halls, and discover the cause of the
-          facility's ruin.</p>
-          <p>Proof of concept for a short music video about gamified addiction and the true fantasy
-          of post-neoliberal "meritocracy". Devised to the song <em>745 sticky</em> by 100 gecs.</p>
-          <p class="tools">CSPaint, After Effects</p>
-          <a class="more" href="745 pitch.html">Full pitch</a>
-        </div>
-      </article>
-
-      <article class="work work--wide">
-        <div class="work__strip">
-          <img src="media/final vfx_10.png" alt="Two figures rendered as glowing green particles in darkness">
-          <img src="media/final vfx_20.png" alt="Close portrait dissolving into particle streaks">
-        </div>
-        <div class="work__meta">
-          <div class="work__title">
-            <h3>VFX Sequences on <em>Nightrunners</em></h3>
-            <p class="work__sub">dir. Sebastian Anderson, 2026</p>
-          </div>
-          <p>VFX and particle animation. Kinect depth capture from the shoot, retargeted in
-          TouchDesigner to drive particle movement.</p>
-          <p class="tools">TouchDesigner, Azure Kinect</p>
-        </div>
-      </article>
-
-      <!-- Dropped from the portfolio PDF, kept here in case you want the
-           catch-all back. It uses the crossfading .fader box.
-      <article class="work">
-        <a class="fader" href="char anim.html" data-interval="2600" aria-label="Other animation">
-          <img class="fader__item" src="media/other-1.jpg" alt="Character animation still">
-          <img class="fader__item" src="media/other-2.jpg" alt="">
-          <img class="fader__item" src="media/other-3.jpg" alt="">
-        </a>
-        <div class="work__meta">
-          <h3>Other animation</h3>
-          <p>Shorts, tests, and commissioned work.</p>
-          <p class="label">Various · 2021 to now</p>
-        </div>
-      </article>
-      -->
-
-    </div>
+    <p>A third entity, a malicious worm called RAYMU, was developed to intercept the player after
+    the screening to provide context as the third cultural force representing a crypto-adjacent
+    extremist community. The character was scrapped due to time constraints.</p>
   </section>
 
-  <!-- ==================== DRAWING / PAINTING =================== -->
-  <section class="band" id="drawing">
-    <div class="band__head">
-      <h2>Drawing &amp; Painting</h2>
-      <p class="note">Traditional and digital works.</p>
-    </div>
+  <figure class="stack-shot">
+    <img src="media/402 ex 5.png" alt="Result screen reading Margin of error was less than point two, choices align with chosen gender identity">
+    <figcaption>The screening returns its verdict.</figcaption>
+  </figure>
 
-    <div class="sheets">
-
-      <figure class="sheet">
-        <img src="media/cognitive-hubris.jpg" alt="Blue and white digital painting of a fragmented face with dripping brushwork">
-        <figcaption>
-          <strong>my cognitive hubris!</strong>
-          <p class="label">Digital painting, TouchDesigner · 2025</p>
-        </figcaption>
-      </figure>
-
-      <figure class="sheet">
-        <img src="media/Exhibition Documentation.jpg" alt="Large charcoal drawing of a standing figure surrounded by smeared marks">
-        <figcaption>
-          <strong>final_girl_final_final_v4</strong>
-          <p class="label">Undergraduate senior exhibition · 2024</p>
-          <p class="label">Charcoal on paper · 3.5ft × 6ft</p>
-        </figcaption>
-      </figure>
-
-      <figure class="sheet">
-        <img src="media/cramped 11 x 17.png" alt="Crouching figure on an olive ground with red and black kanji blocks">
-        <figcaption>
-          <strong>paralytic habits</strong>
-          <p class="label">Digital · 2025</p>
-        </figcaption>
-      </figure>
-
-    </div>
-  </section>
-
-  <footer class="foot" id="contact">
-    <div class="band__head">
-      <h2>Contact</h2>
-    </div>
-    <ul class="inline-links">
-      <li><a href="mailto:katherinecook2002@gmail.com">katherinecook2002@gmail.com</a></li>
-      <li><a href="tel:+19788447253">(978) 844-7253</a></li>
-      <li><a href="#">Instagram</a></li>
-      <li><a href="#">Vimeo</a></li>
-      <li><a href="media/katherine-cook-resume.pdf">Resume</a></li>
-    </ul>
-    <p class="label foot__place">Somerville, MA</p>
+  <footer class="foot">
+    <a href="index.html#av">Back to all work</a>
+    <a href="mailto:katherinecook2002@gmail.com">katherinecook2002@gmail.com</a>
+    <p class="label">Somerville, MA</p>
   </footer>
 
 </main>
-
-<script>
-// Hover-play the AV loops, and only then.
-(function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  document.querySelectorAll('.work__media').forEach(function (card) {
-    var v = card.querySelector('video');
-    if (!v) return;
-    var play = function () { v.play().catch(function () {}); };
-    var stop = function () { v.pause(); v.currentTime = 0; };
-    card.addEventListener('mouseenter', play);
-    card.addEventListener('focus', play);
-    card.addEventListener('mouseleave', stop);
-    card.addEventListener('blur', stop);
-  });
-})();
-
-// Fade the reel out once it scrolls away. This used to sit inside the
-// fader loop below, so it ran once per box; it belongs on its own.
-(function () {
-  var reel = document.querySelector('.reelfilm');
-  if (!reel || !('IntersectionObserver' in window)) return;
-  new IntersectionObserver(function (e) {
-    reel.classList.toggle('is-going', !e[0].isIntersecting);
-  }, { rootMargin: '-25% 0px 0px 0px' }).observe(reel);
-})();
-
-// Crossfading boxes. Works with <img> or <video> items, or a mix.
-// Only the outgoing and incoming videos ever decode at once, and
-// a box goes idle whenever it scrolls off screen.
-(function () {
-  var FADE = 800;
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  document.querySelectorAll('.fader').forEach(function (box) {
-    var items = Array.prototype.slice.call(box.querySelectorAll('.fader__item'));
-    if (!items.length) return;
-
-    var i = 0;
-    var timer = null;
-    var wait = parseInt(box.getAttribute('data-interval'), 10) || 3000;
-
-    function show(el) {
-      el.classList.add('is-on');
-      if (el.tagName === 'VIDEO') {
-        try { el.currentTime = 0; } catch (e) {}
-        el.play().catch(function () {});
-      }
-    }
-    function hide(el) {
-      el.classList.remove('is-on');
-      if (el.tagName === 'VIDEO') {
-        setTimeout(function () {
-          if (!el.classList.contains('is-on')) el.pause();
-        }, FADE + 100);
-      }
-    }
-
-    show(items[0]);
-    if (reduce || items.length < 2) return;
-
-    function step() {
-      var prev = items[i];
-      i = (i + 1) % items.length;
-      show(items[i]);
-      hide(prev);
-    }
-    function start() { if (!timer) timer = setInterval(step, wait); }
-    function stop() {
-      clearInterval(timer);
-      timer = null;
-      items.forEach(function (el) {
-        if (el.tagName === 'VIDEO' && !el.classList.contains('is-on')) el.pause();
-      });
-    }
-
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { e.isIntersecting ? start() : stop(); });
-      }, { threshold: 0.25 }).observe(box);
-    } else {
-      start();
-    }
-
-    box.addEventListener('mouseenter', stop);
-    box.addEventListener('mouseleave', start);
-  });
-})();
-</script>
 
 </body>
 </html>
